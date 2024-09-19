@@ -8,8 +8,7 @@ namespace UNOCT_Tech_Test
         public static TestData_UNOCT_Tech_Test TestData { get; }
 
         //public static string SourceName;
-        public static string? Attachment1;
-        public static string? Attachment2;
+
         public static string? Home_Page_Title;
 
 
@@ -28,25 +27,8 @@ namespace UNOCT_Tech_Test
             TestData = JsonConvert.DeserializeObject<TestData_UNOCT_Tech_Test>(ReadTestData);
 
             #region Get_Test_Data_Files_Variables
-
-            Attachment1 = TestData.Attachment1;
-            Attachment2 = TestData.Attachment2;
             Home_Page_Title = TestData.Home_Page_Title;
-
-
             #endregion Get_Test_Data_Files_Variables
-
-            //  updates the document path with local config.
-
-            if (TestData.Equals("Attachment1"))
-            {
-                Attachment1 = GetTestDataPath(TestData.Attachment1);
-            }
-
-            if (TestData.Equals("Attachment2"))
-            {
-                Attachment2 = GetTestDataPath(TestData.Attachment2);
-            }
         }
 
         private static string GetTestDataPath(string testDataFile)

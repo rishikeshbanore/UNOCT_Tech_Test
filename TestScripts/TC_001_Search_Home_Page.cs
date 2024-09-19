@@ -13,7 +13,7 @@
             bool result = objCTTravel.AssertSearchResults(ProjectConfiguration.Selenium_Search_Result_Term, ProjectConfiguration.Selenium_Search_Result_Count);
 
             //THEN: user is able to see the expected search title and expectyed search result count
-            Assert.That(result, Is.True, "Search Result Tile is found and Search result Count is matched.");
+            Assert.That(result, Is.True, "Search Result File is found and Search result Count is matched.");
         }
 
         [TearDown]
