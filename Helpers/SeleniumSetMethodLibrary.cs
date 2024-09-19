@@ -4,8 +4,7 @@ namespace UNOCT_Tech_Test
     public class SeleniumSetMethodLibrary
     {
         private readonly IWebDriver driver;
-        private readonly string testCaseName;
-        private readonly ExtentTest reportLogger;
+
 
         // Constructor for the class
         public SeleniumSetMethodLibrary(IWebDriver driver)
@@ -22,9 +21,8 @@ namespace UNOCT_Tech_Test
             {
                 driver.Navigate().GoToUrl(url);
             }
-            catch (WebDriverException ex) // Catch specific WebDriver exceptions
+            catch (WebDriverException) // Catch specific WebDriver exceptions
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -37,9 +35,8 @@ namespace UNOCT_Tech_Test
                 driver.Manage().Window.Maximize();
                 WaitForLoad(100); // Use explicit wait instead of Thread.Sleep
             }
-            catch (WebDriverException ex)
+            catch (WebDriverException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -59,51 +56,47 @@ namespace UNOCT_Tech_Test
         }
 
 
-        public async Task ClickElement(IWebElement webElement)
+        public void ClickElement(IWebElement webElement)
         {
             try
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(webElement)).Click();
             }
-            catch (WebDriverTimeoutException ex)
+            catch (WebDriverTimeoutException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
 
-        public async Task EnterText(IWebElement webElement, string value)
+        public void EnterText(IWebElement webElement, string value)
         {
             try
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(webElement)).SendKeys(value);
             }
-            catch (WebDriverTimeoutException ex)
+            catch (WebDriverTimeoutException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
 
         public void SelectDropDown(IWebElement element, string text)
         {
-            const string methodName = "SelectDropDown";
             try
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
                 new SelectElement(element).SelectByText(text);
             }
-            catch (NoSuchElementException ex)
+            catch (NoSuchElementException)
             {
-                string message = ex.Message;
+ 
                 throw;
             }
-            catch (WebDriverTimeoutException ex)
+            catch (WebDriverTimeoutException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -120,9 +113,8 @@ namespace UNOCT_Tech_Test
                 {
                 }
             }
-            catch (ElementNotVisibleException ex)
+            catch (ElementNotVisibleException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -134,9 +126,8 @@ namespace UNOCT_Tech_Test
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element)).Click();
             }
-            catch (WebDriverTimeoutException ex)
+            catch (WebDriverTimeoutException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -163,9 +154,8 @@ namespace UNOCT_Tech_Test
             {
                 driver.SwitchTo().ActiveElement();
             }
-            catch (NoSuchWindowException ex)
+            catch (NoSuchWindowException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -178,9 +168,8 @@ namespace UNOCT_Tech_Test
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(frame));
                 driver.SwitchTo().Frame(frame);
             }
-            catch (NoSuchFrameException ex)
+            catch (NoSuchFrameException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -190,10 +179,9 @@ namespace UNOCT_Tech_Test
             try
             {
                 driver.SwitchTo().DefaultContent();
-              }
-            catch (Exception ex)
+            }
+            catch (Exception)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -208,9 +196,8 @@ namespace UNOCT_Tech_Test
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(webElement)).Clear();
                 }
             }
-            catch (ElementNotVisibleException ex)
+            catch (ElementNotVisibleException)
             {
-                string message = ex.Message;
                 throw;
             }
         }
@@ -222,10 +209,9 @@ namespace UNOCT_Tech_Test
                 IAlert alert = driver.SwitchTo().Alert();
                 alert.Accept();
             }
-            catch (NoAlertPresentException ex)
+            catch (NoAlertPresentException)
             {
-                string message = ex.Message;
-                throw;
+                throw; 
             }
         }
 
@@ -240,7 +226,7 @@ namespace UNOCT_Tech_Test
                     webElement.Click();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -256,7 +242,7 @@ namespace UNOCT_Tech_Test
                     webElement.Click();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -271,16 +257,15 @@ namespace UNOCT_Tech_Test
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(webElement));
                 return webElement.Displayed;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
         // Method to verify if the page title matches the expected title
         public bool verifyPageTitle(string expectedTitle)
         {
-            string methodName = "verifyPageTitle";
             try
             {
                 if (driver.Title.Trim().Equals(expectedTitle.Trim()))
@@ -293,16 +278,15 @@ namespace UNOCT_Tech_Test
                     throw new ElementNotVisibleException(expectedTitle + " is not the valid title!");
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
         // Method to check if a web element is not visible
         public bool isWebElementNotVisible(IWebElement webElement, string elementInfo)
         {
-            string methodName = "isWebElementNotVisible";
             try
             {
                 if (!webElement.Displayed)
@@ -312,31 +296,29 @@ namespace UNOCT_Tech_Test
                 }
                 return false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
         // Method to check if an input field is editable
         public bool isInputFieldEditable(IWebElement webElement)
         {
-            string methodName = "isInputFieldEditable";
             try
             {
                 webElement.Clear();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
         // Method to verify if the text of a web element matches the expected text
         public void verifyText(IWebElement webElement, string expectedText)
         {
-            string methodName = "verifyText";
             try
             {
                 if (!webElement.Text.Trim().Equals(expectedText.Trim()))
@@ -344,7 +326,7 @@ namespace UNOCT_Tech_Test
                     throw new Exception("Wrong Text: " + webElement.Text + " => Expected Text: " + expectedText);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -353,7 +335,6 @@ namespace UNOCT_Tech_Test
         // Method to switch to another window by page title
         public void windowSwitch(string pageTitle)
         {
-            string methodName = "windowSwitch";
             try
             {
                 ReadOnlyCollection<string> handles = driver.WindowHandles;
@@ -361,13 +342,11 @@ namespace UNOCT_Tech_Test
                 {
                     if (driver.SwitchTo().Window(handle).Title.Equals(pageTitle))
                     {
-                        reportLogger.Pass("Redirected to correct page: " + driver.Title);
                         return;
                     }
                 }
-                reportLogger.Fail("The expected page " + pageTitle + " was not opened.");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -376,7 +355,6 @@ namespace UNOCT_Tech_Test
         // Handle window pop-ups
         public void windowHandler(IWebElement webElement)
         {
-            string methodName = "windowHandler";
             try
             {
                 string parentWindow = driver.CurrentWindowHandle;
@@ -384,7 +362,7 @@ namespace UNOCT_Tech_Test
                 string popupWindowHandle = finder.Click(webElement);
                 driver.SwitchTo().Window(popupWindowHandle);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -393,14 +371,13 @@ namespace UNOCT_Tech_Test
         // Switch back to the parent window
         public void switchToParentWindow()
         {
-            string methodName = "switchToParentWindow";
             try
             {
                 string parentWindow = driver.CurrentWindowHandle;
                 driver.Close();
                 driver.SwitchTo().Window(parentWindow);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -409,12 +386,11 @@ namespace UNOCT_Tech_Test
         // Close the current browser window
         public void windowClose()
         {
-            string methodName = "windowClose";
             try
             {
                 driver.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -423,13 +399,12 @@ namespace UNOCT_Tech_Test
         // Navigate to the previous page
         public void navigateToPreviousPage()
         {
-            string methodName = "navigateToPreviousPage";
             try
             {
                 driver.Navigate().Back();
                 Thread.Sleep(3000);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -438,12 +413,11 @@ namespace UNOCT_Tech_Test
         // Change the current URL
         public void changeURL(string url)
         {
-            string methodName = "changeURL";
             try
             {
                 driver.Navigate().GoToUrl(url);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

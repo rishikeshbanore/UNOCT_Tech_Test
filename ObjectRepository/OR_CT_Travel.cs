@@ -27,13 +27,13 @@ namespace UNOCT_Tech_Test
 
         #region Methods for CT Travel Home  Page
 
-        public async Task SearchTerm(string? searchTerm)
+        public void SearchTerm(string? searchTerm)
         {
-            await objSeleniumMethodLib.EnterText(TB_Search, searchTerm);
-            await objSeleniumMethodLib.ClickElement(Button_Submit);
+            objSeleniumMethodLib.EnterText(TB_Search, searchTerm);
+            objSeleniumMethodLib.ClickElement(Button_Submit);
         }
 
-        public async Task<bool> AssertSearchResults(string ? searchResultTitle, string? searchResultCount)
+        public bool AssertSearchResults(string ? searchResultTitle, string? searchResultCount)
         {
             //IList<IWebElement> SearchResults = driver.FindElements(By.CssSelector("ol.search-results li.search-result h3.title a"));
 
