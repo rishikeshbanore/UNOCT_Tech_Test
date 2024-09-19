@@ -8,10 +8,9 @@ namespace UNOCT_Tech_Test
         public static TestData_UNOCT_Tech_Test TestData { get; }
 
         //public static string SourceName;
-        public static string Attachment1;
-        public static string Attachment2;
-        public static string Text_HomePage_Verification;
-        public static string Home_Page_Title;
+        public static string? Attachment1;
+        public static string? Attachment2;
+        public static string? Home_Page_Title;
 
 
         #endregion TestData_Files_Variable_declaration
@@ -32,7 +31,6 @@ namespace UNOCT_Tech_Test
 
             Attachment1 = TestData.Attachment1;
             Attachment2 = TestData.Attachment2;
-            Text_HomePage_Verification = TestData.Text_HomePage_Verification;
             Home_Page_Title = TestData.Home_Page_Title;
 
 
