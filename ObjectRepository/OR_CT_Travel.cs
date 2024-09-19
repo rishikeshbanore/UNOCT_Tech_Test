@@ -1,0 +1,52 @@
+﻿
+namespace UNOCT_Tech_Test
+{
+    public class OR_CT_Travel
+    {
+        public IWebDriver driver;
+        SeleniumSetMethodLibrary objSeleniumMethodLib;
+
+        public OR_CT_Travel(IWebDriver driver)
+        {
+            this.driver = driver;
+            objSeleniumMethodLib = new SeleniumSetMethodLibrary(this.driver);
+        }
+
+        #region Locators for CT Travel Home Page
+
+        //Locator for Search Text Box Container
+        public IWebElement TB_Search => driver.FindElement(By.Name("search_block_form"));
+
+        //Locator for Submit Button
+        public IWebElement Button_Submit => driver.FindElements(By.XPath("//button[@type='submit']")).First();
+
+        //Locator for Search Results 
+        public IList<IWebElement> SearchResults => driver.FindElements(By.CssSelector("ol.search-results li.search-result h3.title a"));
+
+        #endregion Locators for CT Travel Home Page
+
+        #region Methods for CT Travel Home  Page
+
+        public async Task SearchTerm(string? searchTerm)
+        {
+            await objSeleniumMethodLib.EnterText(TB_Search, searchTerm);
+            await objSeleniumMethodLib.ClickElement(Button_Submit);
+        }
+
+        public async Task<bool> AssertSearchResults(string ? searchResultTitle, string? searchResultCount)
+        {
+            //IList<IWebElement> SearchResults = driver.FindElements(By.CssSelector("ol.search-results li.search-result h3.title a"));
+
+            List<string> resultTitle = new List<string>();
+
+            foreach (var result in SearchResults) 
+            {
+                resultTitle.Add(result.Text);
+            }
+
+            return (resultTitle.Count == Int32.Parse(searchResultCount) && (resultTitle.Contains(searchResultTitle)));
+      
+        }
+        #endregion Methods for CT Travel Home Page
+    }
+}

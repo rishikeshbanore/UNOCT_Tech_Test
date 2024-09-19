@@ -1,0 +1,12 @@
+{
+  "Selenium_ApplicationName": "UNOCT_Tech_Test",
+  "Selenium_Environment": "Test",
+  "Selenium_Browser": "chrome",
+  "Selenium_URL": "https://www.un.org/cttravel/",
+  "Selenium_UserName": "",
+  "Selenium_Email": "",
+  "Selenium_Password": "",
+  "Selenium_Search_Term": "goTravel",
+  "Selenium_Search_Result_Term": "Online Training Course on the Detection of Terrorists and their Travel Movements - The Gambia",
+  "Selenium_Search_Result_Count": "6"
+}

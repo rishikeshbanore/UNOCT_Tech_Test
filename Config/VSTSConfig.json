@@ -1,0 +1,12 @@
+{
+  "Selenium_ApplicationName": "__Selenium_ApplicationName__",
+  "Selenium_Environment": "__Selenium_Environment__",
+  "Selenium_Browser": "__Selenium_Browser__",
+  "Selenium_URL": "__Selenium_URL__",
+  "Selenium_UserName": "__Selenium_UserName__",
+  "Selenium_Password": "__Selenium_Password__",
+  "Selenium_Email": "__Selenium_Email__",
+  "Selenium_Search_Term": "__Selenium_Search_Term__",
+  "Selenium_Search_Result_Term": "__Selenium_Search_Result_Term__",
+  "Selenium_Search_Result_Count": "__Selenium_Search_Result_Count__"
+}
