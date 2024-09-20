@@ -23,7 +23,16 @@ namespace UNOCT_Tech_Test
         //Locator for Search Results 
         public IList<IWebElement> SearchResults => driver.FindElements(By.CssSelector("ol.search-results li.search-result h3.title a"));
 
+        //Locator for goTravel Image
+        public IWebElement Image => driver.FindElement(By.ClassName("panopoly-image-full"));
+
         #endregion Locators for CT Travel Home Page
+
+
+        public bool AssergoTravelLogoPresence()
+        {
+            return Image?.Displayed ?? false;
+        }
 
         #region Methods for CT Travel Home  Page
 
