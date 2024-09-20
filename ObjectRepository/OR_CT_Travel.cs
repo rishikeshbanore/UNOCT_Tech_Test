@@ -35,8 +35,6 @@ namespace UNOCT_Tech_Test
 
         public bool AssertSearchResults(string ? searchResultTitle, string? searchResultCount)
         {
-            //IList<IWebElement> SearchResults = driver.FindElements(By.CssSelector("ol.search-results li.search-result h3.title a"));
-
             List<string> resultTitle = new List<string>();
 
             foreach (var result in SearchResults) 

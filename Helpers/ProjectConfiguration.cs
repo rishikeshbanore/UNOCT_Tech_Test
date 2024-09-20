@@ -42,10 +42,5 @@ namespace UNOCT_Tech_Test
             Selenium_Search_Result_Term = GetProjectConfig["Selenium_Search_Result_Term"];
         }
 
-        // Get Chrome,IE,Edge drivers path
-        public static string GetDriverPath()
-        {
-            return AppDomain.CurrentDomain.BaseDirectory;
-        }
     }
 }
